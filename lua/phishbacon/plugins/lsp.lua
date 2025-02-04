@@ -22,7 +22,15 @@ return {
     )
     require("mason").setup();
     require("mason-lspconfig").setup({
-      ensure_installed = { "clangd", "lua_ls", "eslint", "ts_ls", "bashls", "svelte" },
+      ensure_installed = {
+        "clangd",
+        "lua_ls",
+        "eslint",
+        "ts_ls",
+        "bashls",
+        "svelte",
+        "marksman"
+      },
       automatic_installation = true,
       handlers = {
         function(server_name)
