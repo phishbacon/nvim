@@ -7,4 +7,8 @@ set("n", "<C-j>", "<CMD>wincmd j<CR>")
 set("n", "<C-k>", "<CMD>wincmd k<CR>")
 set("n", "<C-h>", "<CMD>wincmd h<CR>")
 set("n", "<C-l>", "<CMD>wincmd l<CR>")
+set("n", "<C-n>", "<CMD>cnext<CR>")
+set("n", "<C-p>", "<CMD>cprev<CR>")
+set("n", "<C-c>", "<CMD>cclose<CR>")
 set("n", "<leader>fm", vim.lsp.buf.format, { desc = "Format buffer" })
+
