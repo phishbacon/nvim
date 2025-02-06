@@ -9,7 +9,18 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/nvim-cmp",
     "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip"
+    "saadparwaiz1/cmp_luasnip",
+    {
+      "folke/lazydev.nvim",
+      ft = "lua",
+      opts = {
+        {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          }
+        }
+      }
+    }
   },
   config = function()
     local cmp = require("cmp")
@@ -60,11 +71,31 @@ return {
         { name = "buffer" },
       }),
     })
+
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' }
+      }
+    })
+
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        { name = 'cmdline' }
+      }),
+---@diagnostic disable-next-line: missing-fields
+      matching = { disallow_symbol_nonprefix_matching = false }
+    })
+
     vim.diagnostic.config({
       float = {
         focusable = false,
         style = "minimal",
         border = "rounded",
+---@diagnostic disable-next-line: assign-type-mismatch
         source = "always",
         header = "",
         prefix = "",
