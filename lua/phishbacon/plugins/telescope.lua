@@ -5,9 +5,15 @@ return {
     tag = "0.1.8",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
     },
     config = function()
       require("telescope").setup({
+        defaults = {
+          cache_picker = {
+            num_pickers = 5
+          }
+        },
         pickers = {
           find_files = {
             theme = "dropdown"
@@ -23,10 +29,22 @@ return {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({})
           },
+          live_grep_args = {
+            auto_quoting = true,
+            mappings = {
+              i = {
+                ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+                ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({postfix = " --iglob "}),
+                ["<C-space>"] = require("telescope-live-grep-args.actions").to_fuzzy_refine,
+              }
+            },
+            theme = "dropdown",
+          }
         },
       })
 
       require("telescope").load_extension("ui-select")
+      require("telescope").load_extension("live_grep_args")
 
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
@@ -48,6 +66,7 @@ return {
           })
         end,
         { desc = "Telescope find in nvim config" })
+      vim.keymap.set("n", "<leader>fl", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
     end
   },
 }
