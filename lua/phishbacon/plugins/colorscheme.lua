@@ -3,11 +3,17 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("tokyonight").setup({
-        ---@diagnostic disable-next-line: missing-fields
-        vim.cmd [[colorscheme tokyonight-night]]
+        style = "night",
+        on_highlights = function(highlights, colors)
+          highlights.EndOfBuffer = {
+            fg = colors.comment,
+          }
+        end,
       })
-    end
+      vim.cmd[[colorscheme tokyonight]]
+    end,
   },
   {
     "bluz71/vim-moonfly-colors",
