@@ -10,9 +10,20 @@ return {
           highlights.EndOfBuffer = {
             fg = colors.comment,
           }
+          local autocmd = vim.api.nvim_create_autocmd
+          local augroup = vim.api.nvim_create_augroup
+
+          autocmd("Filetype", {
+            desc = "Hide eob in neo-tree",
+            group = augroup("tokyonight", { clear = true }),
+            pattern = "neo-tree",
+            callback = function()
+              vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = colors.bg_dark })
+            end
+          })
         end,
       })
-      vim.cmd[[colorscheme tokyonight]]
+      vim.cmd [[colorscheme tokyonight]]
     end,
   },
   {

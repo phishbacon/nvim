@@ -8,7 +8,6 @@ return {
         show_hidden = true,
       },
       vim.keymap.set("n", "<leader>ep", "<CMD>Oil " .. vim.fn.getcwd() .. "<CR>", { desc = "Open parent directory"} ),
-      vim.keymap.set("n", "<leader>ed", "<CMD>Oil " .. vim.fn.expand("%:p") .. "<CR>", { desc = "Open current directory"} )
     })
   end,
 }
