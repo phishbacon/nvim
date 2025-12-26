@@ -65,7 +65,7 @@ return {
             cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
           })
         end,
-        { desc = "Telescope find in nvim config" })
+        { desc = "Telescope find in nvim data" })
       vim.keymap.set("n", "<leader>fl", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
     end
   },

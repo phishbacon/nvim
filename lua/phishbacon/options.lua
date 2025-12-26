@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-if vim.fn.has("macunix") then
+if vim.fn.has("macunix") == 1 or vim.fn.has("unix") == 1 then
   vim.cmd("set listchars=eol:↓,tab:→·,extends:>,precedes:<,space:•")
 else
   vim.cmd("set listchars=eol:↴,tab:→·,extends:>,precedes:<,space:•")

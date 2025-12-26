@@ -29,4 +29,15 @@ if not vim.g.vscode then
       vim.highlight.on_yank()
     end
   })
+
+  autocmd("BufEnter", {
+    group = augroup("CRLFGroup", { clear = true }),
+    callback = function(args)
+      if vim.bo[args.buf].fileformat == 'unix' or vim.bo[args.buf].fileformat == "mac" then
+        vim.cmd("set listchars=eol:↓,tab:→·,extends:>,precedes:<,space:•")
+      else
+        vim.cmd("set listchars=eol:↴,tab:→·,extends:>,precedes:<,space:•")
+      end
+    end
+  })
 end

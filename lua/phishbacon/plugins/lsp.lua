@@ -1,8 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason.nvim",
+    "mason-org/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
@@ -45,9 +45,8 @@ return {
       automatic_installation = true,
       handlers = {
         function(server_name)
-          require("lspconfig")[server_name].setup({
-            capabilities = capabilities
-          })
+          vim.lsp.config(server_name, { capabilities = capabilities })
+          vim.lsp.enable(server_name)
         end
       }
     })
@@ -63,6 +62,7 @@ return {
       mapping = cmp.mapping.preset.insert({
         ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
         ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+        ["<C-c>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
       sources = cmp.config.sources({
