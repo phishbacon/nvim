@@ -5,7 +5,7 @@ require("phishbacon.lazy")
 if not vim.g.vscode then
   local autocmd = vim.api.nvim_create_autocmd
   local augroup = vim.api.nvim_create_augroup
-  
+
   autocmd("LspAttach", {
     group = augroup("LspGroup", { clear = true }),
     callback = function(args)
@@ -21,7 +21,7 @@ if not vim.g.vscode then
       vim.keymap.set("n", "]d", function() vim.diagnostic_goto_prev() end, opts)
     end
   })
-  
+
   autocmd("TextYankPost", {
     desc = "Pretty colors when yanking",
     group = augroup("HighlightGroup", { clear = true }),
