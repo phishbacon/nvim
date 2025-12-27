@@ -1,0 +1,1 @@
+-- vim.pack.add({"rktjmp/lush.nvim"})

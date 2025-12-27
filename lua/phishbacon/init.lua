@@ -1,8 +1,8 @@
 require("phishbacon.options")
 require("phishbacon.keymap")
-require("phishbacon.lazy")
 
 if not vim.g.vscode then
+  require("phishbacon.plugins")
   local autocmd = vim.api.nvim_create_autocmd
   local augroup = vim.api.nvim_create_augroup
 

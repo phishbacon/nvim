@@ -1,13 +1,12 @@
-return {
-  "toppair/peek.nvim",
-  event = { "VeryLazy" },
-  build = "deno task --quiet build:fast",
-  config = function()
-    require("peek").setup({
-      app = "browser",
-      filetype = { "markdown" }
-    })
-    vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-    vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-  end,
-}
+require("phishbacon.utils").create_install_update_hook("peek.nvim", { "deno", "task", "--quiet", "build:fast" })
+
+vim.pack.add({ "https://github.com/toppair/peek.nvim" })
+
+require("peek").setup({
+  app = "browser",
+  filetype = { "markdown" }
+})
+
+-- build = "deno task --quiet build:fast"
+vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
