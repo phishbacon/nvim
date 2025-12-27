@@ -1,4 +1,7 @@
-vim.pack.add({"https://github.com/loctvl842/monokai-pro.nvim"})
+vim.pack.add({
+  "https://github.com/loctvl842/monokai-pro.nvim",
+  "https://github.com/scottmckendry/cyberdream.nvim"
+})
 
 require("monokai-pro").setup({
   filter = "classic",
@@ -23,4 +26,5 @@ require("monokai-pro").setup({
     end
   end
 })
-vim.cmd([[colorscheme monokai-pro]])
+-- vim.cmd([[colorscheme monokai-pro]])
+vim.cmd([[colorscheme cyberdream]])

@@ -13,17 +13,17 @@ telescope.setup({
       num_pickers = 5
     }
   },
-  pickers = {
-    find_files = {
-      theme = "dropdown"
-    },
-    live_grep = {
-      theme = "dropdown"
-    },
-    help_tags = {
-      theme = "dropdown"
-    },
-  },
+  -- pickers = {
+  --   find_files = {
+  --     theme = "ivy"
+  --   },
+  --   live_grep = {
+  --     theme = "ivy"
+  --   },
+  --   help_tags = {
+  --     theme = "ivy"
+  --   },
+  -- },
   extensions = {
     ["ui-select"] = {
       require("telescope.themes").get_dropdown({})
@@ -37,7 +37,7 @@ telescope.setup({
           ["<C-space>"] = require("telescope-live-grep-args.actions").to_fuzzy_refine,
         }
       },
-      theme = "dropdown",
+      -- theme = "dropdown",
     }
   },
 })
@@ -61,7 +61,7 @@ vim.keymap.set("n", "<leader>fp",
   function()
     builtin.find_files({
       ---@diagnostic disable-next-line: param-type-mismatch
-      cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+      cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "site", "pack", "core", "opt")
     })
   end,
   { desc = "Telescope find in nvim data" })
