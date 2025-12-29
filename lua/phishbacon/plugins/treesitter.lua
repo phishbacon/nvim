@@ -5,7 +5,7 @@ if vim.fn.exists(":TSUpdate") == 2 then
   vim.cmd("TSUpdate")
 end
 
-ts.install({ "c", "lua", "vimdoc", "javascript", "typescript", "bash", "svelte", "markdown" })
+ts.install({ "c", "lua", "vimdoc", "javascript", "typescript", "bash", "svelte", "markdown", "html", "css" })
 local group = vim.api.nvim_create_augroup("TreesitterAttach", { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
   group = group,

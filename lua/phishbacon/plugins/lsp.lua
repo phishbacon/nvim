@@ -39,7 +39,9 @@ require("mason-lspconfig").setup({
     "ts_ls",
     "bashls",
     "svelte",
-    "marksman"
+    "marksman",
+    "css-lsp",
+    "html-lsp"
   },
   automatic_installation = true,
   handlers = {
