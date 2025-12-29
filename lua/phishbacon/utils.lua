@@ -45,6 +45,16 @@ function M.create_install_update_hook(plugin, cmd)
   })
 end
 
--- If hooks need to run on install, run this before `vim.pack.add()`
+---comment
+---@param prefix string
+---@return function
+function M.desc_with_prefix(prefix)
+  return function(desc)
+    return { desc = prefix .. ": " .. desc }
+  end
+end
+
+M.autocmd = vim.api.nvim_create_autocmd
+M.augroup = vim.api.nvim_create_augroup
 
 return M

@@ -1,3 +1,6 @@
+local utils = require("phishbacon.utils")
+local desc = utils.desc_with_prefix("Telescope")
+
 vim.pack.add({
   "https://github.com/nvim-telescope/telescope.nvim",
   "https://github.com/nvim-telescope/telescope-ui-select.nvim",
@@ -6,6 +9,7 @@ vim.pack.add({
 })
 
 local telescope = require("telescope")
+local lga_actions = require("telescope-live-grep-args.actions")
 
 telescope.setup({
   defaults = {
@@ -32,9 +36,9 @@ telescope.setup({
       auto_quoting = true,
       mappings = {
         i = {
-          ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-          ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
-          ["<C-space>"] = require("telescope-live-grep-args.actions").to_fuzzy_refine,
+          ["<C-k>"] = lga_actions.quote_prompt(),
+          ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+          ["<C-space>"] = lga_actions.to_fuzzy_refine,
         }
       },
       -- theme = "dropdown",
@@ -46,17 +50,17 @@ telescope.load_extension("ui-select")
 telescope.load_extension("live_grep_args")
 
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+vim.keymap.set("n", "<leader>ff", builtin.find_files, desc("find files"))
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, desc("live grep"))
+vim.keymap.set("n", "<leader>fb", builtin.buffers, desc("buffers"))
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, desc("help tags"))
 vim.keymap.set("n", "<leader>fn",
   function()
     builtin.find_files({
       cwd = vim.fn.stdpath("config")
     })
   end,
-  { desc = "Telescope find in nvim config" })
+  desc("find in nvim config"))
 vim.keymap.set("n", "<leader>fp",
   function()
     builtin.find_files({
@@ -65,4 +69,5 @@ vim.keymap.set("n", "<leader>fp",
     })
   end,
   { desc = "Telescope find in nvim data" })
-vim.keymap.set("n", "<leader>fl", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+vim.keymap.set("n", "<leader>fl", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  desc("live grep args"))

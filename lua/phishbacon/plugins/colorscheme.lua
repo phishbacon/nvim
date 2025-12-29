@@ -8,7 +8,7 @@ require("monokai-pro").setup({
   transparent_background = false,
   terminal_colors = true,
 
-  override = function (c)
+  override = function(c)
     return {
       IndentBlanklineChar = { fg = c.base.dimmed4 },
       Whitespace = { fg = c.base.dimmed4 },
