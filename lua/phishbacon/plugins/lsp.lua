@@ -40,8 +40,8 @@ require("mason-lspconfig").setup({
     "bashls",
     "svelte",
     "marksman",
-    "css-lsp",
-    "html-lsp"
+    "cssls",
+    "html"
   },
   automatic_installation = true,
   handlers = {
